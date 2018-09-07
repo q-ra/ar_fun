@@ -15,8 +15,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
   @IBOutlet var sceneView: ARSCNView!
   
   override func viewDidLoad() {
-    
-    
     super.viewDidLoad()
     
     // Set the view's delegate
@@ -30,13 +28,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Set the scene to the view
     sceneView.scene = scene
     
-    
-    
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    let sceneNode = sceneView.scene.rootNode.childNode(withName: "ship", recursively: true)!
-    sceneNode.runAction(SCNAction.moveBy(x: 3, y: 0, z: 16, duration: 3))
+    let ships = sceneView.scene.rootNode.childNodes
+    for ship in ships {
+      ship.runAction(SCNAction.moveBy(x: 3, y: 0, z: 16, duration: 3))
+    }
+    //    let ship1 = sceneView.scene.rootNode.childNode(withName: "ship1", recursively: true)!
+//    let ship2 = sceneView.scene.rootNode.childNode(withName: "ship2", recursively: true)!
+//    ship2.runAction(SCNAction.moveBy(x: 3, y: 0, z: -16, duration: 3))
   }
   
   override func viewWillAppear(_ animated: Bool) {
